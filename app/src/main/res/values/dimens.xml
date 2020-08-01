@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Per Material Design specs: -->
+    <!-- https://material.io/design/components/buttons-floating-action-button.html#specs -->
+
+    <dimen name="app_bar_height">400dp</dimen>
+
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">1dp</dimen>
+
+    <dimen name="navigation_drawer_header_height">192dp</dimen>
+    <dimen name="navigation_drawer_header_padding">16dp</dimen>
+    <dimen name="navigation_drawer_image_width">100dp</dimen>
+    <dimen name="preview_image_size">240dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="categories_list_margin_sides">6dp</dimen>
+    <dimen name="categories_list_top">5dp</dimen>
+    <dimen name="categories_list_bottom">5dp</dimen>
+
+    <dimen name="card_view_elevation">4dp</dimen>
+    <dimen name="card_image_view_elevation">5dp</dimen>
+    <dimen name="card_view_corner_radius">4dp</dimen>
+    <dimen name="card_view_stroke_width">1dp</dimen>
+</resources>

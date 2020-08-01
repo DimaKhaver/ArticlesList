@@ -1,0 +1,103 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+apply plugin: "koin"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.example.articleslist"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.appcompat:appcompat:1.1.0"
+
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+    implementation "com.google.android.material:material:$materialVersion"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-guava:$room_version"
+
+
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin"
+
+    def retrofit = "2.6.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0'
+
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-core-ext:$koin_version"
+    testImplementation "org.koin:koin-test:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+}

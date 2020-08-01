@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="details"
+            type="com.example.articleslist.data.local.db.Article.ItemDetails" />
+
+        <variable
+            name="args"
+            type="com.example.articleslist.presentation.uiflow.categories.details.CategoriesDetailsFragmentArgs" />
+
+        <variable
+            name="DetailsViewModel"
+            type="com.example.articleslist.presentation.uiflow.categories.details.DetailsViewModel" />
+
+    </data>
+
+    <com.example.articleslist.presentation.uiflow.customviews.ElasticDragDismissFrameLayout
+        android:id="@+id/draggable_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        android:nestedScrollingEnabled="true"
+        app:dragDismissDistance="200dp"
+        app:dragDismissScale="0.80">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:background="@color/colorPrimaryRed"
+            android:elevation="9dp"
+            app:imageUrl="@{details.picture}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingTop="12dp"
+            android:translationZ="100dp"
+            app:srcCompat="@drawable/ic_arrow"
+            app:onBackPressed="@{true}"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:fillViewport="true"
+            android:paddingTop="10dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:scrollbarThumbVertical="@drawable/scrollbar_background"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text='@{details.title + details.content}'
+                android:paddingTop="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:background="@drawable/red_frame_background"
+                tools:text="CONTENT" />
+
+        </androidx.core.widget.NestedScrollView>
+
+    </com.example.articleslist.presentation.uiflow.customviews.ElasticDragDismissFrameLayout>
+
+</layout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.example.articleslist.data.local.db.Article" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:strokeColor="@color/colorPrimaryRed"
+        app:strokeWidth="@dimen/card_view_stroke_width"
+        app:cardBackgroundColor="@android:color/black"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        android:elevation="@dimen/card_view_elevation"
+        app:cardUseCompatPadding="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/preview_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/title"
+                app:layout_constraintVertical_weight="8"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder"
+                app:layout_constraintDimensionRatio="1:1"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/preview_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_weight="2"
+                android:textColor="@color/colorPrimaryRed"
+                android:textSize="18sp"
+                android:layout_margin="3dp"
+                android:text="@{article.item.title}"
+                tools:text="SHOWING LONG TITLE PREVIEW" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

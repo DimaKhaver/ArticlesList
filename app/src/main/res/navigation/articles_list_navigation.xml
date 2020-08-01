@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/articlesListFragment">
+
+    <fragment
+        android:id="@+id/articlesListFragment"
+        android:name="com.example.articleslist.presentation.uiflow.categories.list.CategoriesSwipeFragment"
+        tools:layout="@layout/fragment_articles_list"
+        android:label="CategoriesSwipeFragment">
+
+        <action
+            android:id="@+id/showArticleDetailFragment"
+            app:destination="@id/articleDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.example.articleslist.presentation.uiflow.categories.details.CategoriesDetailsFragment"
+        tools:layout="@layout/fragment_details"
+        android:label="CategoriesDetailsFragment">
+
+        <argument
+            android:name="tableId"
+            app:argType="string" />
+
+        <argument
+            android:name="detailsId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/showArticlesListFragment"
+            app:destination="@id/articlesListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+</navigation>
