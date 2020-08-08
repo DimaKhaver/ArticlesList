@@ -41,7 +41,6 @@ class CategoriesDetailsFragment: Fragment() {
             container, false, dataBindingComponent
         )
         binding.args = params
-        binding.vm = detailsViewModel
         draggableFrame = binding.draggableContainer
 
         chromeFader = ElasticDragDismissFrameLayout.SystemHelper(this)

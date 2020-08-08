@@ -28,6 +28,7 @@ abstract class CategoriesInitFragment: Fragment() {
     protected var binding by autoCleared<FragmentCategoriesBinding>()
     protected var categoriesAdapter by autoCleared<CategoriesAdapter>()
     protected lateinit var recyclerView: RecyclerView
+    protected lateinit var paginator: Paginator
 
     protected val dataBinding: (inflater: LayoutInflater,
                                 container: ViewGroup?) -> FragmentCategoriesBinding = { inflater, container ->
@@ -54,6 +55,11 @@ abstract class CategoriesInitFragment: Fragment() {
         recyclerView.setHasFixedSize(true)
         return binding.root
     }
+
+    override fun onPause() {
+        paginator.reset()
+        super.onPause()
+    }
 }
 
 class TvCategoryFragment: CategoriesInitFragment() {
@@ -71,7 +77,7 @@ class TvCategoryFragment: CategoriesInitFragment() {
             }
         })
 
-        recyclerView.addOnScrollListener(object : Paginator(recyclerView) {
+        paginator = object : Paginator(recyclerView) {
             override val isLoading: Boolean
                 get() = binding.progressLoading.isVisible
 
@@ -89,7 +95,9 @@ class TvCategoryFragment: CategoriesInitFragment() {
                     currentPage = start
                 )
             }
-        })
+        }
+
+        recyclerView.addOnScrollListener(paginator)
     }
 }
 
@@ -108,7 +116,7 @@ class TalkCategoryFragment: CategoriesInitFragment() {
             }
         })
 
-        recyclerView.addOnScrollListener(object : Paginator(recyclerView) {
+        paginator = object : Paginator(recyclerView) {
             override val isLoading: Boolean
                 get() = binding.progressLoading.isVisible
 
@@ -121,9 +129,14 @@ class TalkCategoryFragment: CategoriesInitFragment() {
 
             override fun loadMore(start: Long, count: Long) {
                 binding.progressLoading.visibility = View.VISIBLE
-                sharedViewModel.getArticles(sharedViewModel.currentCategory.value, start)
+                sharedViewModel.getArticles(
+                    category = sharedViewModel.currentCategory.value,
+                    currentPage = start
+                )
             }
-        })
+        }
+
+        recyclerView.addOnScrollListener(paginator)
     }
 }
 
@@ -143,7 +156,7 @@ class SpiritCategoryFragment: CategoriesInitFragment() {
             }
         })
 
-        recyclerView.addOnScrollListener(object : Paginator(recyclerView) {
+        paginator = object : Paginator(recyclerView) {
             override val isLoading: Boolean
                 get() = binding.progressLoading.isVisible
 
@@ -156,8 +169,13 @@ class SpiritCategoryFragment: CategoriesInitFragment() {
 
             override fun loadMore(start: Long, count: Long) {
                 binding.progressLoading.visibility = View.VISIBLE
-                sharedViewModel.getArticles(sharedViewModel.currentCategory.value, start)
+                sharedViewModel.getArticles(
+                    category = sharedViewModel.currentCategory.value,
+                    currentPage = start
+                )
             }
-        })
+        }
+
+        recyclerView.addOnScrollListener(paginator)
     }
 }
