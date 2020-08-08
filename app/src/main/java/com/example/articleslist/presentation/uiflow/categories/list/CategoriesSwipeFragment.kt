@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.fragment_articles_list.*
 class CategoriesSwipeFragment: Fragment() {
 
     companion object {
-        private const val PREV_STATE_TAG = "LOST_CONNECTION"
+        private const val PREV_STATE_TAG = "PREV_STATE_TAG"
     }
 
     private var previousState = true
@@ -108,8 +108,11 @@ class CategoriesSwipeFragment: Fragment() {
         }
 
         sharedViewModel.networkLiveData.observe(viewLifecycleOwner, Observer {
-            if (!ConnectivityStateHolder.isConnected)
-                displaySnackbar(view = root, message = "Internet is OFF!").withColor().show()
+            if (ConnectivityStateHolder.isConnected) {
+                sharedViewModel.getArticles(category = tabLayout.selectedTabPosition + 1L)
+            }
+
+            previousState = ConnectivityStateHolder.isConnected
         })
     }
 
